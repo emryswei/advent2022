@@ -1,10 +1,9 @@
 
 from collections import defaultdict
 
-SIZE_MAX = 100000
+
 path = []
 size = defaultdict(int)
-ans = 0
 
 with open('./data.txt', 'r') as f:
     lines = f.read().strip().split('\n')
@@ -24,8 +23,14 @@ with open('./data.txt', 'r') as f:
             for i in range(1, len(path)+1):
                 size['/'.join(path[:i])] += sz
 
-for k, v in size.items():
-    if v <= SIZE_MAX:
-        ans += v
 
+total = 70000000
+unused = 30000000
+used = size['/']
+needed = used - (total - unused)
+ans = 99999999
+
+for k, v in size.items():
+    if v >= needed:
+        ans = min(v, ans)
 print(ans)
