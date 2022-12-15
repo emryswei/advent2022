@@ -1,13 +1,14 @@
 
-edge = 0
+
+
 moves = [(-1, 0), (1, 0), (0, 1), (0, -1)]
 ans = 0
 with open('./data.txt') as f:
     trees = f.read().strip().split('\n')
     R, C = len(trees[0]), len(trees)
-    edge = (R + C) * 2 - 4
-    for r in range(1, R-1):
-        for c in range(1, C-1):
+
+    for r in range(R):
+        for c in range(C):
             can_add = False
 
             for (move_r, move_c) in moves:
@@ -23,7 +24,8 @@ with open('./data.txt') as f:
                         need_add = False
                 if need_add:
                     can_add = True
-
             if can_add:
                 ans += 1
-print(ans+edge)
+print(ans)
+
+
